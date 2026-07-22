@@ -1424,4 +1424,22 @@ document.addEventListener('DOMContentLoaded', () => {
     ScrollTrigger.refresh();
   });
 
+  // About section reel: custom mute/unmute button
+  const aboutReelVideo = document.getElementById('about-reel-video');
+  const aboutMuteBtn = document.getElementById('about-video-mute-btn');
+
+  if (aboutReelVideo && aboutMuteBtn) {
+    aboutMuteBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+
+      aboutReelVideo.muted = !aboutReelVideo.muted;
+
+      const isUnmuted = !aboutReelVideo.muted;
+      aboutMuteBtn.classList.toggle('is-unmuted', isUnmuted);
+      aboutMuteBtn.setAttribute('aria-pressed', String(isUnmuted));
+      aboutMuteBtn.setAttribute('aria-label', isUnmuted ? 'Mute video' : 'Unmute video');
+    });
+  }
+
 });
