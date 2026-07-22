@@ -32,16 +32,18 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!target) return;
 
       e.preventDefault();
+
+      // Close the mobile menu (and resume Lenis, which the menu paused) BEFORE
+      // requesting the scroll — Lenis silently drops scrollTo() calls made while stopped.
+      if (mobileMenu && mobileMenu.classList.contains('active') && mobileToggle) {
+        mobileToggle.click();
+      }
+
       window.__lenis && window.__lenis.scrollTo(target, {
         offset: HEADER_OFFSET,
         duration: 1.2,
         easing: (t) => 1 - Math.pow(1 - t, 3), // easeOutCubic — premium, not sluggish
       });
-
-      // Auto-close mobile menu if it was open
-      if (mobileMenu && mobileMenu.classList.contains('active') && mobileToggle) {
-        mobileToggle.click();
-      }
     });
   });
 
