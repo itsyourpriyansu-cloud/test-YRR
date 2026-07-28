@@ -688,7 +688,7 @@ header.scrolled .logo-img.logo-sticky {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  max-width: 526px;
+  max-width: 558px;
 }
 
 .about-tag {
